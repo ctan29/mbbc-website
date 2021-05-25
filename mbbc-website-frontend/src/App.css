@@ -3,10 +3,50 @@
   margin: auto;
 } */
 
+html {
+  overflow-y: overlay; /* Fix scrollbar messing with width (incompatible with older browsers)*/
+}
+
+main {
+  width: 60%;
+  margin: auto;
+  font-family: "Noto Sans JP";
+}
+
+.decorative-title {
+  font-family: "Fugaz One";
+  font-size: 4em;
+  text-align: center;
+}
+
 nav {
   background-color: rgb(4, 22, 119);
   width: 100%;
   height: 5em;
+  position: sticky;
+  top: 0;
+}
+
+@keyframes atTop {
+  from {
+    background-color: rgb(4, 22, 119);
+    height: 5em;
+  }
+  to {
+    background-color: rgb(29, 96, 211);
+    height: 4em;
+  }
+}
+
+@keyframes notAtTop {
+  from {
+    background-color: rgb(29, 96, 211);
+    height: 4em;
+  }
+  to {
+    background-color: rgb(4, 22, 119);
+    height: 5em;
+  }
 }
 
 nav ul {
@@ -32,4 +72,4 @@ nav ul li {
   height: 100%;
 }
 
-/* 29, 96, 211*/
+/* 29, 96, 211 rgb(29, 96, 211)*/
