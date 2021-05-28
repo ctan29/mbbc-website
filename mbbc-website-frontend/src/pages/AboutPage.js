@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AboutPage = () => (
   <>
     <h1 className="decorative-title">Greetings</h1>
-    <p>
+    <p className="about-text">
       Welcome to the Metropolitan Bible Baptist Church. You are invited to join
       our church services to learn about God, the Bible, and the principles of
       Christian living. As believers in Christ, it is our desire to share with
@@ -13,7 +14,14 @@ const AboutPage = () => (
       opportunity to invite you to join with us this Sunday in Metropolitan
       Bible Baptist Church? Be blessed!
     </p>
-    <p>– By the members of Metropolitan Bible Baptist Church</p>
+    <p className="about-quote">
+      &ndash; By the members of Metropolitan Bible Baptist Church
+    </p>
+    <div className="center-wrapper">
+      <Link to="/contact" className="link-button">
+        FIND US TODAY
+      </Link>
+    </div>
     <h2>Are You Saved?</h2>
     <p>
       In this day and time, it’s not often that someone offers an absolutely

@@ -13,11 +13,7 @@ main {
   font-family: "Noto Sans JP";
 }
 
-.decorative-title {
-  font-family: "Fugaz One";
-  font-size: 4em;
-  text-align: center;
-}
+/* Navbar styles */
 
 nav {
   background-color: rgb(4, 22, 119);
@@ -70,6 +66,38 @@ nav ul li {
   text-decoration: none;
   font-size: 1.75em;
   height: 100%;
+}
+
+/* About page styles */
+
+.decorative-title {
+  font-family: "Fugaz One";
+  font-size: 4em;
+  color: rgb(4, 22, 119);
+  text-align: center;
+}
+
+.about-text {
+  font-size: 1.5em;
+}
+
+.about-quote {
+  font-size: 1.5em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.center-wrapper {
+  text-align: center;
+}
+
+.link-button {
+  display: inline-block;
+  text-decoration: none;
+  border-style: solid;
+  font-size: 1.5em;
+  padding: 0.5em;
+  background-color: burlywood; /*placeholder*/
 }
 
 /* 29, 96, 211 rgb(29, 96, 211)*/

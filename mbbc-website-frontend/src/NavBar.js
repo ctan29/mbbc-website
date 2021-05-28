@@ -40,6 +40,11 @@ const NavBar = () => {
             About
           </Link>
         </li>
+        <li>
+          <Link to="/contact" className="navbar-link">
+            Contact Us
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import DocStatementPage from "./pages/DocStatementPage";
+import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" component={HomePage} exact />
             <Route path="/about" component={AboutPage} />
             <Route path="/statement-of-faith" component={DocStatementPage} />
+            <Route path="/contact" component={ContactPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </main>
