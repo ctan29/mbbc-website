@@ -4,22 +4,32 @@ import { Link } from "react-router-dom";
 const AboutPage = () => (
   <>
     <h1 className="decorative-title">Greetings</h1>
-    <p className="about-text">
-      Welcome to the Metropolitan Bible Baptist Church. You are invited to join
-      our church services to learn about God, the Bible, and the principles of
-      Christian living. As believers in Christ, it is our desire to share with
-      you the faith we have in Christ, the joy of doing what God has commanded
-      us to do, and the absolute assurance that one day God will take us to
-      Heaven to be with Jesus Christ for all eternity. Could we take this
-      opportunity to invite you to join with us this Sunday in Metropolitan
-      Bible Baptist Church? Be blessed!
-    </p>
-    <p className="about-quote">
+    <div className="about-text center-wrapper">
+      <p>Welcome to the Metropolitan Bible Baptist Church.</p>
+      <p>
+        You are invited to join our church services to learn about God, the
+        Bible, and the principles of Christian living.
+      </p>
+      <p>
+        As believers in Christ, it is our desire to share with you the faith we
+        have in Christ, the joy of doing what God has commanded us to do, and
+        the absolute assurance that one day God will take us to Heaven to be
+        with Jesus Christ for all eternity.
+      </p>
+      <p>
+        Could we take this opportunity to invite you to join with us this Sunday
+        in Metropolitan Bible Baptist Church? Be blessed!
+      </p>
+    </div>
+    <p className="about-quote center-wrapper">
       &ndash; By the members of Metropolitan Bible Baptist Church
     </p>
     <div className="center-wrapper">
       <Link to="/contact" className="link-button">
         FIND US TODAY
+      </Link>
+      <Link to="/statement-of-faith" className="link-button">
+        READ OUR DOCTRINAL STATEMENT
       </Link>
     </div>
     <h2>Are You Saved?</h2>
@@ -29,7 +39,9 @@ const AboutPage = () => (
       especially for you! It has already been paid for by someone else. Please
       read on to find out more.
     </p>
-    <p>This gift is ETERNAL LIFE in a glorious Heaven.</p>
+    <p>
+      This gift is <b>ETERNAL LIFE</b> in a glorious <b>Heaven.</b>
+    </p>
     <p>
       It is difficult for men to accept the thought of this being a free gift.
       Man wants to earn everlasting life.
@@ -46,7 +58,9 @@ const AboutPage = () => (
       something, it is not a gift, but a wage.
     </p>
     <p>
-      We earn death in hell, but God gives us Heaven through Jesus Christ!
+      <b>
+        We earn death in hell, but God gives us Heaven through Jesus Christ!
+      </b>
       (SPECIAL BOX?)
     </p>
     <p>
@@ -64,11 +78,11 @@ const AboutPage = () => (
       sinners, Christ died for us.” (Romans 5:8)
     </p>
     <p>
-      Receive this absolutely free gift TODAY! Come to God in humble prayer,
-      admit your guilt as a sinner before a Holy God, turn to God from your sin
-      by faith (repent), asking God to save you through the Lord Jesus Christ.
-      “But as many as received him, to them gave he power to become the sons of
-      God, even to them that believe on his name.” (John 1:12)
+      Receive this absolutely free gift <b>TODAY!</b> Come to God in humble
+      prayer, admit your guilt as a sinner before a Holy God, turn to God from
+      your sin by faith (repent), asking God to save you through the Lord Jesus
+      Christ. “But as many as received him, to them gave he power to become the
+      sons of God, even to them that believe on his name.” (John 1:12)
     </p>
     <p>
       “Testifying both to the Jews, and also to the Greeks, repentance toward
@@ -82,13 +96,13 @@ const AboutPage = () => (
       bring, mail or email this tract back to us) if you have trusted Christ’s
       promise to save you and give you eternal life.
     </p>
-    <h3>ADD INPUT HERE</h3>
+    <h3>ADD INPUT HERE</h3> {/* placeholder */}
     <p>
       Note: The above plan of salvation was taken from Dr Macale’s latest book,
       “Education Catastrophe: The Curse of Ignorance,” which can be purchased
       online from Amazon.com
     </p>
-    <h3>ADD LINK ABOVE</h3>
+    <h3>ADD LINK ABOVE</h3> {/* placeholder */}
   </>
 );
 

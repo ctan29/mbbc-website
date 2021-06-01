@@ -10,7 +10,7 @@ html {
 main {
   width: 60%;
   margin: auto;
-  font-family: "Noto Sans JP";
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 /* Navbar styles */
@@ -21,6 +21,7 @@ nav {
   height: 5em;
   position: sticky;
   top: 0;
+  z-index: 50;
 }
 
 @keyframes atTop {
@@ -29,15 +30,15 @@ nav {
     height: 5em;
   }
   to {
-    background-color: rgb(29, 96, 211);
-    height: 4em;
+    background-color: rgb(13, 68, 161);
+    height: 4.5em;
   }
 }
 
 @keyframes notAtTop {
   from {
-    background-color: rgb(29, 96, 211);
-    height: 4em;
+    background-color: rgb(13, 68, 161);
+    height: 4.5em;
   }
   to {
     background-color: rgb(4, 22, 119);
@@ -64,14 +65,15 @@ nav ul li {
 .navbar-link {
   color: white;
   text-decoration: none;
-  font-size: 1.75em;
+  font-size: 1.25em;
+  font-family: "Noto Sans JP", sans-serif;
   height: 100%;
 }
 
 /* About page styles */
 
 .decorative-title {
-  font-family: "Fugaz One";
+  font-family: "Fugaz One", fantasy;
   font-size: 4em;
   color: rgb(4, 22, 119);
   text-align: center;
@@ -95,9 +97,23 @@ nav ul li {
   display: inline-block;
   text-decoration: none;
   border-style: solid;
-  font-size: 1.5em;
-  padding: 0.5em;
-  background-color: burlywood; /*placeholder*/
+  font-size: 1.25em;
+  padding: 0.75em 2em;
+  margin: 1.5em;
+  color: rgb(4, 22, 119);
+  background-color: white; /*placeholder*/
+  transition: 0.2s;
+}
+
+.link-button:hover {
+  background-color: rgb(4, 22, 119);
+  border-color: rgb(4, 22, 119);
+  color: white;
+}
+
+/* Statement styles */
+.statement-article h2 {
+  margin-top: 1.75em;
 }
 
 /* 29, 96, 211 rgb(29, 96, 211)*/
