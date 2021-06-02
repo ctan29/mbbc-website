@@ -7,11 +7,13 @@ import AboutPage from "./pages/AboutPage";
 import DocStatementPage from "./pages/DocStatementPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <NavBar />
         <main>

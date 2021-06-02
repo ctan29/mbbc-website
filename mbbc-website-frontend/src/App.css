@@ -77,6 +77,7 @@ nav ul li {
   font-size: 4em;
   color: rgb(4, 22, 119);
   text-align: center;
+  margin: 0.5em auto;
 }
 
 .about-text {
@@ -114,6 +115,31 @@ nav ul li {
 /* Statement styles */
 .statement-article h2 {
   margin-top: 1.75em;
+}
+
+/* Contact page styles */
+.contact-details {
+  font-family: "Fugaz One", fantasy;
+  font-weight: 900;
+  font-size: 3.5em;
+  margin: 0.5em auto;
+}
+
+.contact-details > p {
+  margin: 0 auto;
+}
+
+.timetable-title {
+  font-family: "Fugaz One", fantasy;
+  font-size: 2.5em;
+  margin: 1em auto 0;
+}
+
+.timetable-list {
+  list-style-type: none;
+  font-size: 2em;
+  font-weight: 600;
+  margin: 0 auto 1em;
 }
 
 /* 29, 96, 211 rgb(29, 96, 211)*/

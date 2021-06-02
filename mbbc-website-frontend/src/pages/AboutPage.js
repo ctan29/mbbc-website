@@ -92,9 +92,8 @@ const AboutPage = () => (
       salvation.” (2 Corinthians 6:2b)
     </p>
     <p>
-      Please let us know in writing (write your name and phone number below and
-      bring, mail or email this tract back to us) if you have trusted Christ’s
-      promise to save you and give you eternal life.
+      Please let us know in writing (write your name and email below) if you
+      have trusted Christ’s promise to save you and give you eternal life.
     </p>
     <h3>ADD INPUT HERE</h3> {/* placeholder */}
     <p>
