@@ -41,6 +41,16 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/blog" className="navbar-link">
+            BLOG
+          </Link>
+        </li>
+        <li>
+          <Link to="/donate" className="navbar-link">
+            GIVING
+          </Link>
+        </li>
+        <li>
           <Link to="/contact" className="navbar-link">
             CONTACT US
           </Link>
