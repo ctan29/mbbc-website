@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import testContent from "./test-content";
+import CommentsList from "../components/CommentsList";
+import AddCommentForm from "../components/AddCommentForm";
 import ArticlesList from "../components/ArticlesList";
 
 /* eslint react/prop-types: 0 */
@@ -35,6 +37,8 @@ const BlogArticlePage = ({ match }) => {
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
+      <AddCommentForm articleName={name} setArticleInfo={setArticleInfo} />
+      <CommentsList comments={articleInfo.comments} />
       <h3>Other Articles</h3>
       <ArticlesList articles={otherArticles} />
     </>
