@@ -13,11 +13,9 @@ const NavBar = () => {
       if (window.scrollY >= 20 && animated === false) {
         navElem.current.style.animation = "atTop 0.3s forwards";
         animated = true;
-        console.log("animated");
       } else if (window.scrollY === 0 && animated === true) {
         navElem.current.style.animation = "notAtTop 0.2s";
         animated = false;
-        console.log("unanimated");
       }
     };
   }, []);

@@ -161,6 +161,12 @@ nav ul li {
   right: 4px;
 }
 
+/* Blog List Styles */
+.article-link {
+  text-decoration: none;
+  color: black;
+}
+
 /* Add Comment Form Styles */
 label {
   display: block;
@@ -168,12 +174,14 @@ label {
 }
 
 input {
-  font-size: 1.25em;
+  display: block;
+  font-size: 1.1em;
   font-family: "Noto Sans JP", sans-serif;
 }
 
 textarea {
-  font-size: 1.25em;
+  display: block;
+  font-size: 1.1em;
   font-family: "Noto Sans JP", sans-serif;
   resize: none;
 }
@@ -194,6 +202,25 @@ textarea {
 .submit-button:hover {
   background-color: rgba(13, 68, 161, 0.8);
   cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
+/* Comments List Styles */
+.comments-list {
+  list-style-type: none;
+}
+
+.comment-username {
+  margin-bottom: 0.25em;
+}
+
+.comment-text {
+  margin-top: 0.25em;
 }
 
 /* 29, 96, 211 rgb(29, 96, 211)*/

@@ -6,12 +6,14 @@ import React from "react";
 const CommentsList = ({ comments }) => (
   <>
     <h3>Comments</h3>
-    {comments.map((comment, key) => (
-      <div key={key}>
-        <h4>{comment.username}</h4>
-        <p>{comment.text}</p>
-      </div>
-    ))}
+    <ul className="comments-list">
+      {comments.map((comment, key) => (
+        <li key={key}>
+          <h4 className="comment-username">{comment.username}</h4>
+          <p className="comment-text">{comment.text}</p>
+        </li>
+      ))}
+    </ul>
   </>
 );
 

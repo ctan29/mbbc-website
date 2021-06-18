@@ -9,7 +9,11 @@ import { Link } from "react-router-dom";
 const ArticlesList = ({ articles }) => (
   <>
     {articles.map((article, key) => (
-      <Link key={key} to={`/blog-article/${article.name}`}>
+      <Link
+        key={key}
+        to={`/blog-article/${article.name}`}
+        className="article-link"
+      >
         <h3>{article.title}</h3>
         <p>{article.content[0].substring(0, 150)}...</p>
       </Link>
