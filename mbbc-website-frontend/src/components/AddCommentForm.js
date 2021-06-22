@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 /* eslint react/prop-types: 0 */
 /* eslint jsx-a11y/label-has-associated-control: 0 */
@@ -11,15 +11,22 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
     errorText: "",
   });
 
+  /* Reset each state when changing between articles */
+  useEffect(() => {
+    setUsername("");
+    setCommentText("");
+    setInputError({ errorName: "", errorText: "" });
+  }, [articleName]);
+
   const USERNAME_LIMIT = 50;
-  const CHARACTER_LIMIT = 500;
+  const TEXT_CHARACTER_LIMIT = 1000;
 
   const addComment = async () => {
     if (
       username.length !== 0 &&
       username.length < USERNAME_LIMIT &&
       commentText.length !== 0 &&
-      commentText.length < CHARACTER_LIMIT
+      commentText.length < TEXT_CHARACTER_LIMIT
     ) {
       setInputError({ errorName: "", errorText: "" });
 
@@ -43,15 +50,13 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
       };
       if (username.length === 0) {
         tempErrors.errorName = "Please enter a name";
-      }
-      if (username.length > USERNAME_LIMIT) {
+      } else if (username.length > USERNAME_LIMIT) {
         tempErrors.errorName = `Your name cannot exceed ${USERNAME_LIMIT} characters. Current characters: ${username.length}`;
       }
       if (commentText.length === 0) {
         tempErrors.errorText = "Please enter a comment";
-      }
-      if (commentText.length > CHARACTER_LIMIT) {
-        tempErrors.errorText = `Your comment cannot exceed ${CHARACTER_LIMIT} characters. Current characters: ${commentText.length}`;
+      } else if (commentText.length > TEXT_CHARACTER_LIMIT) {
+        tempErrors.errorText = `Your comment cannot exceed ${TEXT_CHARACTER_LIMIT} characters. Current characters: ${commentText.length}`;
       }
       setInputError(tempErrors);
     }

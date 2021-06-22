@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import testContent from "./test-content";
 import CommentsList from "../components/CommentsList";
 import AddCommentForm from "../components/AddCommentForm";
@@ -11,16 +11,34 @@ import ArticlesList from "../components/ArticlesList";
 
 const BlogArticlePage = ({ match }) => {
   const name = match.params.name;
-  const article = testContent.find((articleT) => articleT.name === name);
+  const article = testContent.find((articleElem) => articleElem.name === name);
 
   const [articleInfo, setArticleInfo] = useState({ comments: [] });
 
+  const loader = useRef();
+
   useEffect(() => {
+    /* add loading here */
+    setArticleInfo({ comments: [] });
+    loader.current.className = "lds-dual-ring";
+
     const fetchData = async () => {
       const result = await fetch(`/api/blog-article/${name}`);
       const body = await result.json();
-      console.log(body);
-      setArticleInfo(body);
+
+      loader.current.className = "";
+
+      // Check if returned an expected result from db, and not db error or nothing
+      if (
+        body != null &&
+        Object.prototype.hasOwnProperty.call(body, "comments")
+      ) {
+        setArticleInfo(body);
+      } else {
+        setArticleInfo({
+          comments: [{ username: "Unable to retrieve comments", name: "" }],
+        });
+      }
     };
     fetchData();
   }, [name]);
@@ -28,7 +46,7 @@ const BlogArticlePage = ({ match }) => {
   if (!article) return <h1>Article does not exist</h1>;
 
   const otherArticles = testContent.filter(
-    (articleT) => articleT.name !== name
+    (articleElem) => articleElem.name !== name
   );
 
   return (
@@ -38,6 +56,8 @@ const BlogArticlePage = ({ match }) => {
         <p key={key}>{paragraph}</p>
       ))}
       <AddCommentForm articleName={name} setArticleInfo={setArticleInfo} />
+      <h3>Comments</h3>
+      <div className="lds-dual-ring" ref={loader} />
       <CommentsList comments={articleInfo.comments} />
       <h3>Other Articles</h3>
       <ArticlesList articles={otherArticles} />

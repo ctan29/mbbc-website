@@ -5,7 +5,7 @@ const app = express();
 
 require("dotenv").config();
 
-const withDB = async (operations) => {
+const withDB = async (operations, res) => {
   try {
     const client = await MongoClient.connect(process.env.MONGO_API_KEY, {
       useNewUrlParser: true,
@@ -32,7 +32,7 @@ app.get("/api/blog-article/:name", async (req, res) => {
       .findOne({ name: articleName });
 
     res.status(200).json(articleInfo);
-  });
+  }, res);
 });
 
 app.post("/api/blog-article/:name/add-comment", (req, res) => {
