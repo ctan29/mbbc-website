@@ -3,25 +3,122 @@ import React, { useState, useEffect } from "react";
 /* eslint react/prop-types: 0 */
 /* eslint jsx-a11y/label-has-associated-control: 0 */
 
-const AddCommentForm = ({ articleName, setArticleInfo }) => {
+const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
   const [username, setUsername] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [commentText, setCommentText] = useState("");
   const [inputError, setInputError] = useState({
     errorName: "",
     errorText: "",
+    errorEmail: "",
   });
 
   /* Reset each state when changing between articles */
   useEffect(() => {
     setUsername("");
+    setUserEmail("");
     setCommentText("");
-    setInputError({ errorName: "", errorText: "" });
+    setInputError({ errorName: "", errorEmail: "", errorText: "" });
   }, [articleName]);
 
-  const USERNAME_LIMIT = 50;
-  const TEXT_CHARACTER_LIMIT = 1000;
+  const USERNAME_LIMIT = 5; /* 50 */
+  const USER_EMAIL_LIMIT = 5; /* 100 */
+  const COMMENT_TEXT_LIMIT = 5; /* 1000 */
+
+  /* Change into state? */
+  const fieldDict = [
+    {
+      field: username,
+      fieldName: "name",
+      limit: USERNAME_LIMIT,
+      error: "errorName",
+      display: displayFields.name,
+      dbName: "username",
+    },
+    {
+      field: userEmail,
+      fieldName: "email",
+      limit: USER_EMAIL_LIMIT,
+      error: "errorEmail",
+      display: displayFields.email,
+      dbName: "email",
+    },
+    {
+      field: commentText,
+      fieldName: "comment",
+      limit: COMMENT_TEXT_LIMIT,
+      error: "errorText",
+      display: displayFields.text,
+      dbName: "text",
+    },
+  ];
 
   const addComment = async () => {
+    let errNum = 0;
+    const tempErrors = {
+      errorName: "",
+      errorEmail: "",
+      errorText: "",
+    };
+
+    /* Simple field validation */
+    fieldDict.forEach((fieldElem) => {
+      if (fieldElem.field.length === 0 && fieldElem.display) {
+        /* Correct grammer for email */
+        if (fieldElem.fieldName === "email") {
+          tempErrors[
+            fieldElem.error
+          ] = `Please enter an ${fieldElem.fieldName}`;
+        } else {
+          tempErrors[fieldElem.error] = `Please enter a ${fieldElem.fieldName}`;
+        }
+        errNum += 1;
+      } else if (
+        fieldElem.field.length > fieldElem.limit &&
+        fieldElem.display
+      ) {
+        tempErrors[
+          fieldElem.error
+        ] = `Your ${fieldElem.fieldName} cannot exceed ${fieldElem.limit} characters. Current characters: ${fieldElem.field.length}`;
+        errNum += 1;
+      }
+    });
+
+    /*
+    console.log(tempErrors);
+    console.log(errNum);
+    console.log({ username, email: userEmail, text: commentText });
+    */
+
+    setInputError(tempErrors);
+
+    /* Fix up */
+
+    if (errNum === 0) {
+      const jsonBody = {};
+
+      fieldDict.forEach((fieldElem) => {
+        if (fieldElem.display) {
+          jsonBody[fieldElem.dbName] = fieldElem.field;
+        }
+      });
+
+      const result = await fetch(`${articleName}`, {
+        method: "post",
+        body: JSON.stringify(jsonBody),
+        headers: { "Content-Type": "application/json" },
+      });
+      const body = await result.json();
+
+      /* Add loading spinner here  */
+
+      setArticleInfo(body);
+      setUsername("");
+      setUserEmail("");
+      setCommentText("");
+    }
+
+    /*
     if (
       username.length !== 0 &&
       username.length < USERNAME_LIMIT &&
@@ -30,15 +127,14 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
     ) {
       setInputError({ errorName: "", errorText: "" });
 
-      const result = await fetch(
-        `/api/blog-article/${articleName}/add-comment`,
-        {
-          method: "post",
-          body: JSON.stringify({ username, text: commentText }),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const result = await fetch(`${articleName}`, {
+        method: "post",
+        body: JSON.stringify({ username, text: commentText }),
+        headers: { "Content-Type": "application/json" },
+      });
       const body = await result.json();
+
+       Add loading spinner here 
 
       setArticleInfo(body);
       setUsername("");
@@ -60,32 +156,65 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
       }
       setInputError(tempErrors);
     }
+    */
   };
+
+  const nameInputField = (
+    <label>
+      Name:
+      <br />
+      <input
+        type="text"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
+      />
+      <span className="error">{inputError.errorName}</span>
+    </label>
+  );
+  const emailInputField = (
+    <label>
+      Email:
+      <br />
+      <input
+        type="text"
+        value={userEmail}
+        onChange={(event) => setUserEmail(event.target.value)}
+      />
+      <span className="error">{inputError.errorEmail}</span>
+    </label>
+  );
+  const textInputField = (
+    <label>
+      Comment:
+      <br />
+      <textarea
+        rows="5"
+        cols="50"
+        value={commentText}
+        onChange={(event) => setCommentText(event.target.value)}
+      />
+      <span className="error">{inputError.errorText}</span>
+    </label>
+  );
+
+  const inputContent = (
+    <>
+      {fieldDict.find(({ fieldName }) => fieldName === "name").display && (
+        <>{nameInputField}</>
+      )}
+      {fieldDict.find(({ fieldName }) => fieldName === "email").display && (
+        <>{emailInputField}</>
+      )}
+      {fieldDict.find(({ fieldName }) => fieldName === "comment").display && (
+        <>{textInputField}</>
+      )}
+    </>
+  );
 
   return (
     <div>
       <h3>Add a comment</h3>
-      <label>
-        Name:
-        <br />
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-        <span className="error">{inputError.errorName}</span>
-      </label>
-      <label>
-        Comment:
-        <br />
-        <textarea
-          rows="5"
-          cols="50"
-          value={commentText}
-          onChange={(event) => setCommentText(event.target.value)}
-        />
-        <span className="error">{inputError.errorText}</span>
-      </label>
+      {inputContent}
       <button
         type="submit"
         className="submit-button"

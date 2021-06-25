@@ -55,7 +55,11 @@ const BlogArticlePage = ({ match }) => {
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
-      <AddCommentForm articleName={name} setArticleInfo={setArticleInfo} />
+      <AddCommentForm
+        articleName={`/api/blog-article/${name}/add-comment`}
+        setArticleInfo={setArticleInfo}
+        displayFields={{ name: true, email: true, text: true }}
+      />
       <h3>Comments</h3>
       <div className="lds-dual-ring" ref={loader} />
       <CommentsList comments={articleInfo.comments} />
