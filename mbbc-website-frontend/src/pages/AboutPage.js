@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AddCommentForm from "../components/AddCommentForm";
 
 const AboutPage = () => (
   <>
@@ -95,7 +96,19 @@ const AboutPage = () => (
       Please let us know in writing (write your name and email below) if you
       have trusted Christ’s promise to save you and give you eternal life.
     </p>
-    <h3>ADD INPUT HERE</h3> {/* placeholder */}
+    <h3>ADD INPUT HERE</h3>{" "}
+    {/* placeholder 
+    <AddCommentForm
+        articleName={`/api/blog-article/${name}/add-comment`}
+        setArticleInfo={setArticleInfo}
+        displayFields={{ name: true, email: true, text: false }}
+      />
+    
+    */}
+    <AddCommentForm
+      postRoute="/api/about/add-query"
+      displayFields={{ name: true, email: true, text: false }}
+    />
     <p>
       Note: The above plan of salvation was taken from Dr Macale’s latest book,
       “Education Catastrophe: The Curse of Ignorance,” which can be purchased

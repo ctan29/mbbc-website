@@ -20,7 +20,7 @@ const BlogArticlePage = ({ match }) => {
   useEffect(() => {
     /* add loading here */
     setArticleInfo({ comments: [] });
-    loader.current.className = "lds-dual-ring";
+    loader.current.className = "lds-dual-ring comment-loader";
 
     const fetchData = async () => {
       const result = await fetch(`/api/blog-article/${name}`);
@@ -55,13 +55,14 @@ const BlogArticlePage = ({ match }) => {
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
+      <h3>Add a comment</h3>
       <AddCommentForm
-        articleName={`/api/blog-article/${name}/add-comment`}
+        postRoute={`/api/blog-article/${name}/add-comment`}
         setArticleInfo={setArticleInfo}
-        displayFields={{ name: true, email: true, text: true }}
+        displayFields={{ name: true, email: false, text: true }}
       />
       <h3>Comments</h3>
-      <div className="lds-dual-ring" ref={loader} />
+      <div className="lds-dual-ring comment-loader" ref={loader} />
       <CommentsList comments={articleInfo.comments} />
       <h3>Other Articles</h3>
       <ArticlesList articles={otherArticles} />

@@ -226,20 +226,20 @@ textarea {
 /* Loading Spinner, courtesy of loading.io/css */
 .lds-dual-ring {
   display: inline-block;
-  width: 80px;
-  height: 80px;
+  vertical-align: bottom;
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
   width: 32px;
   height: 32px;
-  margin: 8px;
   border-radius: 50%;
   border: 4px solid black;
   border-color: black transparent black transparent;
   animation: lds-dual-ring 2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
@@ -247,6 +247,14 @@ textarea {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.submit-loader {
+  margin-left: 8px;
+}
+
+.comment-loader {
+  margin-left: 4em;
 }
 
 /* 29, 96, 211 rgb(29, 96, 211)*/

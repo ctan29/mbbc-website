@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 /* eslint react/prop-types: 0 */
 /* eslint jsx-a11y/label-has-associated-control: 0 */
 
-const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
+const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [commentText, setCommentText] = useState("");
@@ -13,13 +13,17 @@ const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
     errorEmail: "",
   });
 
+  const commentLoader = useRef();
+
   /* Reset each state when changing between articles */
   useEffect(() => {
     setUsername("");
     setUserEmail("");
     setCommentText("");
     setInputError({ errorName: "", errorEmail: "", errorText: "" });
-  }, [articleName]);
+
+    commentLoader.current.className = "";
+  }, [postRoute]);
 
   const USERNAME_LIMIT = 5; /* 50 */
   const USER_EMAIL_LIMIT = 5; /* 100 */
@@ -64,7 +68,7 @@ const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
     /* Simple field validation */
     fieldDict.forEach((fieldElem) => {
       if (fieldElem.field.length === 0 && fieldElem.display) {
-        /* Correct grammer for email */
+        /* Correct grammar for email */
         if (fieldElem.fieldName === "email") {
           tempErrors[
             fieldElem.error
@@ -103,19 +107,23 @@ const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
         }
       });
 
-      const result = await fetch(`${articleName}`, {
+      commentLoader.current.className = "lds-dual-ring submit-loader";
+
+      const result = await fetch(`${postRoute}`, {
         method: "post",
         body: JSON.stringify(jsonBody),
         headers: { "Content-Type": "application/json" },
       });
       const body = await result.json();
 
-      /* Add loading spinner here  */
-
-      setArticleInfo(body);
+      if (setArticleInfo) {
+        setArticleInfo(body);
+      }
       setUsername("");
       setUserEmail("");
       setCommentText("");
+
+      commentLoader.current.className = "";
     }
 
     /*
@@ -213,8 +221,8 @@ const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
 
   return (
     <div>
-      <h3>Add a comment</h3>
       {inputContent}
+
       <button
         type="submit"
         className="submit-button"
@@ -222,6 +230,7 @@ const AddCommentForm = ({ articleName, setArticleInfo, displayFields }) => {
       >
         Comment
       </button>
+      <div className="lds-dual-ring submit-loader" ref={commentLoader} />
     </div>
   );
 };
