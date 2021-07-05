@@ -96,18 +96,12 @@ const AboutPage = () => (
       Please let us know in writing (write your name and email below) if you
       have trusted Christ’s promise to save you and give you eternal life.
     </p>
-    <h3>ADD INPUT HERE</h3>{" "}
-    {/* placeholder 
-    <AddCommentForm
-        articleName={`/api/blog-article/${name}/add-comment`}
-        setArticleInfo={setArticleInfo}
-        displayFields={{ name: true, email: true, text: false }}
-      />
-    
-    */}
+    <h3>Write to us - PLACEHOLDER</h3>
     <AddCommentForm
       postRoute="/api/about/add-query"
       displayFields={{ name: true, email: true, text: false }}
+      buttonText="Submit"
+      confirmText="Your details have been successfully submitted"
     />
     <p>
       Note: The above plan of salvation was taken from Dr Macale’s latest book,

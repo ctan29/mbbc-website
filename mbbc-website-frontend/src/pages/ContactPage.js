@@ -1,5 +1,6 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import AddCommentForm from "../components/AddCommentForm";
 
 /* eslint react/prop-types: 0 */
 /* eslint react/destructuring-assignment: 0 */
@@ -18,7 +19,8 @@ const mapStyles = {
 
 const ContactPage = (props) => (
   <>
-    <h1 className="decorative-title">Contact Us</h1> {/* remove title? */}
+    <h1 className="decorative-title">Contact Us</h1>{" "}
+    {/* remove title? - CHANGE DESIGN */}
     <Map
       google={props.google}
       containerStyle={contStyle}
@@ -45,9 +47,13 @@ const ContactPage = (props) => (
     <ul className="timetable-list">
       <li>7:00 pm - Bible Study and Prayer Meeting</li>
     </ul>
-    <h1 className="decorative-title">
-      Contact Us PLACEHOLDER AND CHANGE DESIGN TOP
-    </h1>
+    <h1 className="decorative-title">Contact Us</h1>
+    <AddCommentForm
+      postRoute="/api/contact/add-query"
+      displayFields={{ name: true, email: true, text: true }}
+      buttonText="Submit"
+      confirmText="Your details have been successfully submitted"
+    />
   </>
 );
 

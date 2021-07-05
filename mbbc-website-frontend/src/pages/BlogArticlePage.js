@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import testContent from "./test-content";
+import articleContent from "./blog-article-content";
 import CommentsList from "../components/CommentsList";
 import AddCommentForm from "../components/AddCommentForm";
 import ArticlesList from "../components/ArticlesList";
@@ -11,7 +11,11 @@ import ArticlesList from "../components/ArticlesList";
 
 const BlogArticlePage = ({ match }) => {
   const name = match.params.name;
-  const article = testContent.find((articleElem) => articleElem.name === name);
+
+  // Would be better if it was a db query, instead of loading in all content
+  const article = articleContent.find(
+    (articleElem) => articleElem.name === name
+  );
 
   const [articleInfo, setArticleInfo] = useState({ comments: [] });
 
@@ -26,9 +30,13 @@ const BlogArticlePage = ({ match }) => {
       const result = await fetch(`/api/blog-article/${name}`);
       const body = await result.json();
 
+      /* 
+        Strange error: Unhandled Rejection (TypeError): Cannot set property 'className' of null
+        Shows up when clicking too fast between blog articles
+      */
       loader.current.className = "";
 
-      // Check if returned an expected result from db, and not db error or nothing
+      // Check if returned an expected result from db, and not a db error or nothing
       if (
         body != null &&
         Object.prototype.hasOwnProperty.call(body, "comments")
@@ -45,13 +53,16 @@ const BlogArticlePage = ({ match }) => {
 
   if (!article) return <h1>Article does not exist</h1>;
 
-  const otherArticles = testContent.filter(
+  const otherArticles = articleContent.filter(
     (articleElem) => articleElem.name !== name
   );
 
   return (
     <>
-      <h1>{article.title}</h1>
+      <h1 className="article-title">{article.title}</h1>
+      <p className="article-details">
+        By {article.author} | {article.date}
+      </p>
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
@@ -60,6 +71,8 @@ const BlogArticlePage = ({ match }) => {
         postRoute={`/api/blog-article/${name}/add-comment`}
         setArticleInfo={setArticleInfo}
         displayFields={{ name: true, email: false, text: true }}
+        buttonText="Comment"
+        confirmText="Your comment has been published"
       />
       <h3>Comments</h3>
       <div className="lds-dual-ring comment-loader" ref={loader} />

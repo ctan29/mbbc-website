@@ -3,7 +3,15 @@ import React, { useState, useEffect, useRef } from "react";
 /* eslint react/prop-types: 0 */
 /* eslint jsx-a11y/label-has-associated-control: 0 */
 
-const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
+// Add text comment, confirmation
+
+const AddCommentForm = ({
+  postRoute,
+  setArticleInfo,
+  displayFields,
+  buttonText,
+  confirmText,
+}) => {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [commentText, setCommentText] = useState("");
@@ -14,6 +22,7 @@ const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
   });
 
   const commentLoader = useRef();
+  const confirmMessage = useRef();
 
   /* Reset each state when changing between articles */
   useEffect(() => {
@@ -23,11 +32,12 @@ const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
     setInputError({ errorName: "", errorEmail: "", errorText: "" });
 
     commentLoader.current.className = "";
+    confirmMessage.current.className = "display-none";
   }, [postRoute]);
 
-  const USERNAME_LIMIT = 5; /* 50 */
-  const USER_EMAIL_LIMIT = 5; /* 100 */
-  const COMMENT_TEXT_LIMIT = 5; /* 1000 */
+  const USERNAME_LIMIT = 50; /* 50 */
+  const USER_EMAIL_LIMIT = 100; /* 100 */
+  const COMMENT_TEXT_LIMIT = 1000; /* 1000 */
 
   /* Change into state? */
   const fieldDict = [
@@ -64,6 +74,7 @@ const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
       errorEmail: "",
       errorText: "",
     };
+    confirmMessage.current.className = "display-none";
 
     /* Simple field validation */
     fieldDict.forEach((fieldElem) => {
@@ -124,6 +135,7 @@ const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
       setCommentText("");
 
       commentLoader.current.className = "";
+      confirmMessage.current.className = "confirm-box";
     }
 
     /*
@@ -228,9 +240,12 @@ const AddCommentForm = ({ postRoute, setArticleInfo, displayFields }) => {
         className="submit-button"
         onClick={() => addComment()}
       >
-        Comment
+        {buttonText}
       </button>
       <div className="lds-dual-ring submit-loader" ref={commentLoader} />
+      <div className="confirm-box" ref={confirmMessage}>
+        <p>&#10003; {confirmText}</p>
+      </div>
     </div>
   );
 };

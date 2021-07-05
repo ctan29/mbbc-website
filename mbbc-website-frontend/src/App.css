@@ -167,6 +167,34 @@ nav ul li {
   color: black;
 }
 
+.article-link:hover {
+  color: blue;
+}
+
+.article-list ul a li {
+  background-color: lightgrey;
+  text-decoration: none;
+  list-style-type: none;
+  padding: 0.1em 1em;
+  margin: 0.5em;
+  transition: 0.2s;
+}
+
+.article-list ul a li:hover {
+  background-color: lightsteelblue;
+}
+
+/* Blog Article Styles */
+.article-title {
+  margin-bottom: 0;
+}
+
+.article-details {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  color: rgba(0, 0, 0, 0.65);
+}
+
 /* Add Comment Form Styles */
 label {
   display: block;
@@ -208,6 +236,21 @@ textarea {
   color: red;
   margin: 0;
   padding: 0;
+}
+
+.confirm-box {
+  display: inline-block;
+  background-color: rgb(190, 253, 190);
+  color: green;
+  margin: 0.5em;
+}
+
+.confirm-box p {
+  margin: 0.75em 1.25em;
+}
+
+.display-none {
+  display: none;
 }
 
 /* Comments List Styles */

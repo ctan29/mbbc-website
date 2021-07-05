@@ -1,5 +1,5 @@
 import React from "react";
-import testContent from "./test-content";
+import articleContent from "./blog-article-content";
 import ArticlesList from "../components/ArticlesList";
 
 /* eslint react/prop-types: 0 */
@@ -13,7 +13,9 @@ const BlogListPage = ({ match }) => {
   return (
     <>
       <h1>Articles</h1>
-      <ArticlesList articles={testContent} />
+      <div className="article-list">
+        <ArticlesList articles={articleContent} />
+      </div>
     </>
   );
 };
