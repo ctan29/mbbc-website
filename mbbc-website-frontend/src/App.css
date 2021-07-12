@@ -168,20 +168,24 @@ nav ul li {
 }
 
 .article-link:hover {
-  color: blue;
+  color: white;
 }
 
 .article-list ul a li {
-  background-color: lightgrey;
+  background-color: rgb(240, 240, 240);
   text-decoration: none;
   list-style-type: none;
-  padding: 0.1em 1em;
+  padding: 0.5em 2em;
   margin: 0.5em;
   transition: 0.2s;
 }
 
 .article-list ul a li:hover {
   background-color: lightsteelblue;
+}
+
+.article-list ul a li h3 {
+  font-size: 1.5em;
 }
 
 /* Blog Article Styles */
@@ -214,10 +218,15 @@ textarea {
   resize: none;
 }
 
+.button-wrapper {
+  display: flex;
+  min-height: 4rem; /* Stops button change size when confirmation appears */
+}
+
 .submit-button {
   display: inline-block;
   padding: 0.5em 1em;
-  margin-top: 0.5em;
+  margin: 0.5rem 0;
   border-style: none;
   border-radius: 10px;
   font-size: 1.25em;
@@ -242,7 +251,7 @@ textarea {
   display: inline-block;
   background-color: rgb(190, 253, 190);
   color: green;
-  margin: 0.5em;
+  margin: 0.5rem;
 }
 
 .confirm-box p {
@@ -294,6 +303,7 @@ textarea {
 
 .submit-loader {
   margin-left: 8px;
+  margin-top: 12px;
 }
 
 .comment-loader {

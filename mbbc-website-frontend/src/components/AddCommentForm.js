@@ -99,12 +99,6 @@ const AddCommentForm = ({
       }
     });
 
-    /*
-    console.log(tempErrors);
-    console.log(errNum);
-    console.log({ username, email: userEmail, text: commentText });
-    */
-
     setInputError(tempErrors);
 
     /* Fix up */
@@ -137,46 +131,6 @@ const AddCommentForm = ({
       commentLoader.current.className = "";
       confirmMessage.current.className = "confirm-box";
     }
-
-    /*
-    if (
-      username.length !== 0 &&
-      username.length < USERNAME_LIMIT &&
-      commentText.length !== 0 &&
-      commentText.length < TEXT_CHARACTER_LIMIT
-    ) {
-      setInputError({ errorName: "", errorText: "" });
-
-      const result = await fetch(`${articleName}`, {
-        method: "post",
-        body: JSON.stringify({ username, text: commentText }),
-        headers: { "Content-Type": "application/json" },
-      });
-      const body = await result.json();
-
-       Add loading spinner here 
-
-      setArticleInfo(body);
-      setUsername("");
-      setCommentText("");
-    } else {
-      const tempErrors = {
-        errorName: "",
-        errorText: "",
-      };
-      if (username.length === 0) {
-        tempErrors.errorName = "Please enter a name";
-      } else if (username.length > USERNAME_LIMIT) {
-        tempErrors.errorName = `Your name cannot exceed ${USERNAME_LIMIT} characters. Current characters: ${username.length}`;
-      }
-      if (commentText.length === 0) {
-        tempErrors.errorText = "Please enter a comment";
-      } else if (commentText.length > TEXT_CHARACTER_LIMIT) {
-        tempErrors.errorText = `Your comment cannot exceed ${TEXT_CHARACTER_LIMIT} characters. Current characters: ${commentText.length}`;
-      }
-      setInputError(tempErrors);
-    }
-    */
   };
 
   const nameInputField = (
@@ -235,16 +189,18 @@ const AddCommentForm = ({
     <div>
       {inputContent}
 
-      <button
-        type="submit"
-        className="submit-button"
-        onClick={() => addComment()}
-      >
-        {buttonText}
-      </button>
-      <div className="lds-dual-ring submit-loader" ref={commentLoader} />
-      <div className="confirm-box" ref={confirmMessage}>
-        <p>&#10003; {confirmText}</p>
+      <div className="button-wrapper">
+        <button
+          type="submit"
+          className="submit-button"
+          onClick={() => addComment()}
+        >
+          {buttonText}
+        </button>
+        <div className="lds-dual-ring submit-loader" ref={commentLoader} />
+        <div className="confirm-box" ref={confirmMessage}>
+          <p>&#10003; {confirmText}</p>
+        </div>
       </div>
     </div>
   );

@@ -17,6 +17,12 @@ const BlogArticlePage = ({ match }) => {
     (articleElem) => articleElem.name === name
   );
 
+  if (!article) return <h1>Article does not exist</h1>;
+
+  const otherArticles = articleContent.filter(
+    (articleElem) => articleElem.name !== name
+  );
+
   const [articleInfo, setArticleInfo] = useState({ comments: [] });
 
   const loader = useRef();
@@ -30,12 +36,6 @@ const BlogArticlePage = ({ match }) => {
       const result = await fetch(`/api/blog-article/${name}`);
       const body = await result.json();
 
-      /* 
-        Strange error: Unhandled Rejection (TypeError): Cannot set property 'className' of null
-        Shows up when clicking too fast between blog articles
-      */
-      loader.current.className = "";
-
       // Check if returned an expected result from db, and not a db error or nothing
       if (
         body != null &&
@@ -47,15 +47,15 @@ const BlogArticlePage = ({ match }) => {
           comments: [{ username: "Unable to retrieve comments", name: "" }],
         });
       }
+
+      /* 
+        Strange error: Unhandled Rejection (TypeError): Cannot set property 'className' of null
+        Shows up when clicking too fast between blog articles
+      */
+      loader.current.className = "";
     };
     fetchData();
   }, [name]);
-
-  if (!article) return <h1>Article does not exist</h1>;
-
-  const otherArticles = articleContent.filter(
-    (articleElem) => articleElem.name !== name
-  );
 
   return (
     <>
@@ -66,7 +66,7 @@ const BlogArticlePage = ({ match }) => {
       {article.content.map((paragraph, key) => (
         <p key={key}>{paragraph}</p>
       ))}
-      <h3>Add a comment</h3>
+      <h2>Add a comment</h2>
       <AddCommentForm
         postRoute={`/api/blog-article/${name}/add-comment`}
         setArticleInfo={setArticleInfo}
@@ -74,11 +74,13 @@ const BlogArticlePage = ({ match }) => {
         buttonText="Comment"
         confirmText="Your comment has been published"
       />
-      <h3>Comments</h3>
+      <h2>Comments</h2>
       <div className="lds-dual-ring comment-loader" ref={loader} />
       <CommentsList comments={articleInfo.comments} />
-      <h3>Other Articles</h3>
-      <ArticlesList articles={otherArticles} />
+      <h2>Other Articles</h2>
+      <div className="article-list">
+        <ArticlesList articles={otherArticles} />
+      </div>
     </>
   );
 };
