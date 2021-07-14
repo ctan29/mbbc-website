@@ -68,6 +68,94 @@ nav ul li {
   font-size: 1.25em;
   font-family: "Noto Sans JP", sans-serif;
   height: 100%;
+  transition: 0.2s;
+}
+
+.navbar-link:hover {
+  color: lightgray;
+}
+
+/* Home page styles */
+.home-video-block {
+  position: relative;
+  margin-left: -33.33%;
+  margin-right: -33.33%;
+}
+
+.home-video {
+  pointer-events: none;
+  z-index: -10;
+  width: 100vw;
+}
+
+.video-overlay {
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 99.5%; /* Slightly bigger than video in some sizes, smaller in others */
+}
+
+.text-overlay {
+  position: absolute;
+  color: white;
+  z-index: 20;
+  text-align: center;
+  top: 20%;
+  left: calc(50vw - 40em); /* Offset width of div */
+  width: 80em;
+}
+
+.text-overlay h1 {
+  font-family: "Fugaz One", fantasy;
+  font-size: 4em;
+  color: lightsteelblue; /*placeholder*/
+}
+
+.text-overlay p {
+  width: 40rem;
+  margin-left: 20rem;
+  font-size: 1.25em;
+}
+
+.home-button {
+  display: inline-block;
+  text-decoration: none;
+  border-style: none;
+  font-size: 1.25em;
+  padding: 0.75em 2em;
+  margin: 1.5em;
+  border-radius: 16px;
+  font-size: 1.25em;
+
+  color: white;
+  background-color: rgb(4, 22, 119);
+  transition: 0.2s;
+}
+
+.home-button:hover {
+  background-color: rgb(13, 68, 161);
+  cursor: pointer;
+}
+
+.home-left-box {
+  display: inline-block;
+  position: relative;
+  background-color: lightskyblue;
+  width: 60%;
+  height: 550px;
+  top: -50px;
+  z-index: 30;
+}
+
+.home-right-box {
+  display: inline-block;
+  position: relative;
+  background-color: cornflowerblue;
+  width: 40%;
+  height: 550px;
+  top: -10px;
+  z-index: 30;
 }
 
 /* About page styles */
@@ -112,7 +200,7 @@ nav ul li {
   color: white;
 }
 
-/* Statement styles */
+/* Doctrinal Statement styles */
 .statement-article h2 {
   margin-top: 1.75em;
 }
@@ -301,11 +389,13 @@ textarea {
   }
 }
 
+/* Submission of content spinner */
 .submit-loader {
   margin-left: 8px;
   margin-top: 12px;
 }
 
+/* Loading comments spinner */
 .comment-loader {
   margin-left: 4em;
 }
