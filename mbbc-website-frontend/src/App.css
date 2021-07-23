@@ -138,6 +138,12 @@ nav ul li {
   cursor: pointer;
 }
 
+.home-flex-wrapper {
+  display: flex;
+  margin-left: -33.33%;
+  margin-right: -33.33%;
+}
+
 .home-left-box {
   display: inline-block;
   position: relative;
@@ -148,6 +154,31 @@ nav ul li {
   z-index: 30;
 }
 
+.home-left-box-wrapper {
+  width: 60%;
+  margin: 5em auto auto auto;
+  text-align: center;
+}
+
+.home-subtitle {
+  font-size: 1em;
+  color: rgb(65, 65, 65);
+  font-weight: 100;
+  letter-spacing: 0.2em;
+}
+
+.home-text {
+  font-size: 1.75em;
+  margin: 0;
+  letter-spacing: 0.025em;
+}
+
+.home-sub-text {
+  font-size: 0.9em;
+  color: rgb(55, 55, 55);
+  font-weight: 100;
+}
+
 .home-right-box {
   display: inline-block;
   position: relative;
@@ -156,6 +187,48 @@ nav ul li {
   height: 550px;
   top: -10px;
   z-index: 30;
+}
+
+.home-right-box-wrapper {
+  margin: 2em auto auto auto;
+  text-align: center;
+  border-width: 0;
+}
+
+.home-right-box-wrapper iframe {
+  width: 100%;
+  height: 400px;
+}
+
+.home-timetable-title {
+  font-family: "Fugaz One", fantasy;
+  font-weight: 900;
+  font-size: 3.5em;
+  text-align: center;
+  margin: 0.1em;
+}
+
+.home-timetable-wrapper {
+  display: flex;
+  text-align: center;
+  margin-left: -10%;
+  margin-right: -10%;
+}
+
+.home-timetable-left {
+  width: 50%;
+}
+
+.home-timetable-right {
+  width: 50%;
+}
+
+.home-timetable-day-title {
+  font-family: "Fugaz One", fantasy;
+  font-weight: 500;
+  font-size: 2em;
+  text-align: center;
+  margin: 0.1em;
 }
 
 /* About page styles */
